@@ -54,7 +54,7 @@ installRequiredDependency() {
 initRepos() {
     if [ ! -d .repo ]; then
         echo "--> Initializing PE workspace"
-        repo init -u https://github.com/PixelExperience/manifest -b $BRANCH --groups=all,notdefault,default,-device,-darwin,-x86,-mips,-exynos5,-mako,-lge,-coral,-goldfish --depth=1
+        repo init -u https://github.com/PixelExperience/manifest -b $BRANCH --groups=all,-notdefault,default,-device,-darwin,-x86,-mips,-exynos5,-mako,-lge,-coral,-goldfish --depth=1
         echo
 
         echo "--> Preparing local manifest"
@@ -98,13 +98,7 @@ setupEnv() {
 buildTrebleApp() {
     echo "--> Building treble_app"
     cd treble_app
-    bash build.sh release
-    if [ -f "TrebleApp.apk" ]; then
-        cp TrebleApp.apk ../vendor/hardware_overlay/TrebleApp/app.apk
-    else
-        wget https://raw.githubusercontent.com/phhusson/vendor_hardware_overlay/pie/TrebleApp/app.apk
-        cp app.apk ../vendor/hardware_overlay/TrebleApp/
-    fi
+    cp release/TrebleApp.apk ../vendor/hardware_overlay/TrebleApp/app.apk
     cd ..
     echo
 }
