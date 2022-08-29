@@ -14,6 +14,7 @@ BL=$PWD/treble_build_pe
 BD=/root/aosp/itzkaguya/builds
 BRANCH=$1
 export WITH_SU=false
+export ALLOW_MISSING_DEPENDENCIES=true
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
 export CCACHE_MAXSIZE=50G
@@ -45,7 +46,7 @@ installRequiredDependency() {
                 schedtool squashfs-tools xsltproc zip zlib1g-dev git-core gnupg flex \
                 bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib \
                 libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache \
-                libgl1-mesa-dev libxml2-utils xsltproc unzip python3 libncurses5 repo
+                libgl1-mesa-dev libxml2-utils xsltproc unzip python3 libncurses5
 
     echo
 
