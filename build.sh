@@ -11,7 +11,7 @@ echo
 set -e
 
 BL=$PWD/treble_build_pe
-BD=$HOME/builds
+BD=/root/aosp/itzkaguya/builds
 BRANCH=$1
 export WITH_SU=false
 export USE_CCACHE=1
