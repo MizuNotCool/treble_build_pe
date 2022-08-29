@@ -140,6 +140,7 @@ generatePackages() {
 START=`date +%s`
 BUILD_DATE="$(date +%Y%m%d)"
 
+installRequiredDependency
 initRepos
 syncRepos
 applyPatches
