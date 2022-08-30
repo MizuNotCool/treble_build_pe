@@ -14,7 +14,6 @@ BL=$PWD/treble_build_pe
 BD=/root/aosp/itzkaguya/builds
 BRANCH=$1
 export WITH_SU=false
-export ALLOW_MISSING_DEPENDENCIES=true
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
 export CCACHE_MAXSIZE=50G
@@ -55,7 +54,7 @@ installRequiredDependency() {
 initRepos() {
     if [ ! -d .repo ]; then
         echo "--> Initializing PE workspace"
-        repo init -u https://github.com/PixelExperience/manifest -b $BRANCH --groups=all,-notdefault,default,-device,-darwin,-x86,-mips,-exynos5,-mako,-lge,-coral,-goldfish --depth=1
+        repo init -u https://github.com/PixelExperience/manifest -b $BRANCH --groups=all,-notdefault,default,-device,-darwin,-x86,-mips,-exynos5,-mako,-lge,-coral,-goldfish,-qemu --depth=1
         echo
 
         echo "--> Preparing local manifest"
