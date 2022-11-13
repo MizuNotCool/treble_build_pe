@@ -11,18 +11,18 @@ echo
 set -e
 
 BL=$PWD/treble_build_pe
-BD=/root/aosp/itzkaguya/builds
+BD=/tmp/itzkaguya/builds
 BRANCH=$1
 export WITH_SU=false
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
 export CCACHE_MAXSIZE=50G
-export BUILD_USER=crazyads69
-export BUILD_HOST=crazyads69
-export BUILD_USERNAME=crazyads69
-export BUILD_HOSTNAME=crazyads69
-export KBUILD_BUILD_USER=crazyads69
-export KBUILD_BUILD_HOST=crazyads69
+export BUILD_USER=ItzKaguya
+export BUILD_HOST=SuzuNetwork-CI
+export BUILD_USERNAME=ItzKaguya
+export BUILD_HOSTNAME=SuzuNetwork-CI
+export KBUILD_BUILD_USER=ItzKaguya
+export KBUILD_BUILD_HOST=SuzuNetwork-CI
 
 [ "$BRANCH" == "" ] && BRANCH="twelve"
 [ "$BRANCH" == "twelve" ] && BUILD="PixelExperience" || BUILD="PixelExperience_Plus"
@@ -112,21 +112,11 @@ buildVariant() {
     echo
 }
 
-buildSlimVariant() {
-    echo "--> Building treble_a64_bvN-slim"
-    wget https://gist.github.com/ponces/891139a70ee4fdaf1b1c3aed3a59534e/raw/slim.patch -O /tmp/slim.patch
-    (cd vendor/gapps && git am /tmp/slim.patch && rm /tmp/slim.patch)
-    make -j$(nproc --all) systemimage
-    (cd vendor/gapps && git reset --hard HEAD~1)
-    mv $OUT/system.img $BD/system-treble_a64_bvN-slim.img
-    echo
-}
-
-
 generatePackages() {
     echo "--> Generating packages"
-    xz -cv $BD/system-treble_a64_bvN.img -9 -T0 > $BD/"$BUILD"_a64-ab-12.1-$BUILD_DATE-UNOFFICIAL.img.xz
-    xz -cv $BD/system-treble_a64_bvN-slim.img -9 -T0 > $BD/"$BUILD"_a64-ab-slim-12.1-$BUILD_DATE-UNOFFICIAL.img.xz
+    xz -cv $BD/system-treble_a64_bvN.img -9 -T0 > $BD/PixelExperience-Plus_a64-ab-12.1-ItzKaguyaGSI-UNOFFICIAL.img.xz
+    curl bashupload.com -T $BD/PixelExperience-Plus_a64-ab-12.1-ItzKaguyaGSI-UNOFFICIAL.img.xz | tee pe-build.txt
+    cat pe-build.txt
     rm -rf $BD/system-*.img
     echo
 }
@@ -141,7 +131,6 @@ applyPatches
 setupEnv
 buildTrebleApp
 buildVariant
-buildSlimVariant
 generatePackages
 
 END=`date +%s`
