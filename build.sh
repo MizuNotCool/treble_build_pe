@@ -31,7 +31,7 @@ export KBUILD_BUILD_HOST=SuzuNetwork-CI
 initRepos() {
     if [ ! -d .repo ]; then
         echo "--> Initializing PE workspace"
-        repo init -u https://github.com/PixelExperience/manifest -b $BRANCH --groups=all,-notdefault,default,-device,-darwin,-x86,-mips,-exynos5,-mako,-lge,-coral,-goldfish,-qemu --depth=1
+        repo init -u https://github.com/PixelExperience/manifest -b twelve --depth=1
         echo
 
         echo "--> Preparing local manifest"
@@ -43,7 +43,7 @@ initRepos() {
 
 syncRepos() {
     echo "--> Syncing repos"
-    repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all) --optimized-fetch --prune
+    repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
     echo
 }
 
