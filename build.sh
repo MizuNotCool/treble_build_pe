@@ -30,7 +30,7 @@ export KBUILD_BUILD_HOST=SuzuNetwork-CI
 
 installRequiredDependency() {
     echo "---> Install Required Dependency"
-    apt install -y bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf libxml2 \
+    sudo apt install -y bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf libxml2 \
                 lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev imagemagick git \
                 lunzip lzop schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python2 perl  \
                 xmlstarlet virtualenv xz-utils rr jq libncurses5 pngcrush lib32ncurses5-dev git-lfs libxml2 \
@@ -38,7 +38,7 @@ installRequiredDependency() {
 
     echo
 
-    apt install -y openjdk-8-jdk apache2 bc bison build-essential ccache curl \
+    sudo apt install -y openjdk-8-jdk apache2 bc bison build-essential ccache curl \
                 flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev \
                 lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev \
                 libssl-dev libxml2 libxml2-utils lzop pngcrush rsync \
